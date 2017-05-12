@@ -19,72 +19,45 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	normal = new PuntoVector3D*[numeroNormales];
 	cara = new Cara*[numeroCaras];
 
-/*	for (int i = 0; i <4; i++){
-		for (int j = 0; j < 4; j++){
-			switch (i)
-			{
-			case 0: 
-				if (j == 3) m[i + j] = 0;
-				else m[i + j] = B(t)->getX();
-				break;
-			case 1:
-				if (j == 3) m[i + j] = 0;
-				else m[i + j] = N(t)->getX();
-				break;
-			case 2:
-				if (j == 3) m[i + j] = 0;
-				else m[i + j] = T(t)->getX();
-				break;
-			case 3:
-				if (j == 3) m[i + j] = 1;
-				else m[i + j] = C(t)->getX();
-				break;
-			default:
-				break;
-			}			
-		}
-		    
-	}
-	*/
 
 	
 
 
-	/*
-	for (int i = 2; i < p; i++)
-		vertice[i] = new PuntoVector3D(r*cos(i * 2 * 3.14 / p), 0, r*sin(i * 2 * 3.14 / p), 1);
+	
+	for (int i = 2; i < nP; i++)
+		vertice[i] = new PuntoVector3D(r*cos(i * 2 * 3.14 / nP), 0, r*sin(i * 2 * 3.14 / nP), 1);
 
-	for (int i = 0; i < p - 1; i++){
+	for (int i = 0; i < nP - 1; i++){
 
-		VerticeNormal** aVN = new VerticeNormal*[3];
-		aVN[0] = new VerticeNormal(0, 0);
-		aVN[1] = new VerticeNormal(i + 1, 0);
-		aVN[2] = new VerticeNormal(i, 0);
-		cara[i] = new Cara(3, aVN);
-		delete aVN;
+		VerticeNormal** aVN1 = new VerticeNormal*[3];
+		aVN1[0] = new VerticeNormal(0, 0);
+		aVN1[1] = new VerticeNormal(i + 1, 0);
+		aVN1[2] = new VerticeNormal(i, 0);
+		cara[i] = new Cara(3, aVN1);
+		delete aVN1;
 
-		VerticeNormal** aVN = new VerticeNormal*[3];
-		aVN[0] = new VerticeNormal(1, 0);
-		aVN[1] = new VerticeNormal(i + 1, 0);
-		aVN[2] = new VerticeNormal(i, 0);
-		cara[p + i] = new Cara(3, aVN);
-		delete aVN;
+		VerticeNormal** aVN2 = new VerticeNormal*[3];
+		aVN2[0] = new VerticeNormal(1, 0);
+		aVN2[1] = new VerticeNormal(i + 1, 0);
+		aVN2[2] = new VerticeNormal(i, 0);
+		cara[nP + i] = new Cara(3, aVN2);
+		delete aVN2;
 
 	}
-	VerticeNormal** aVN = new VerticeNormal*[3];
-	aVN[0] = new VerticeNormal(0, 0);
-	aVN[1] = new VerticeNormal(numeroVertices - 1, 0);
-	aVN[2] = new VerticeNormal(2, 0);
-	cara[numeroCaras - 2] = new Cara(3, aVN);
-	delete aVN;
+	VerticeNormal** aVN3 = new VerticeNormal*[3];
+	aVN3[0] = new VerticeNormal(0, 0);
+	aVN3[1] = new VerticeNormal(numeroVertices - 1, 0);
+	aVN3[2] = new VerticeNormal(2, 0);
+	cara[numeroCaras - 2] = new Cara(3, aVN3);
+	delete aVN3;
 
-	VerticeNormal** aVN = new VerticeNormal*[3];
-	aVN[0] = new VerticeNormal(1, 0);
-	aVN[1] = new VerticeNormal(numeroVertices - 1, 0);
-	aVN[2] = new VerticeNormal(2, 0);
-	cara[numeroCaras - 1] = new Cara(3, aVN);
-	delete aVN;
-	*/
+	VerticeNormal** aVN4 = new VerticeNormal*[3];
+	aVN4[0] = new VerticeNormal(1, 0);
+	aVN4[1] = new VerticeNormal(numeroVertices - 1, 0);
+	aVN4[2] = new VerticeNormal(2, 0);
+	cara[numeroCaras - 1] = new Cara(3, aVN4);
+	delete aVN4;
+	
 
 
 
