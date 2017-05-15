@@ -2,7 +2,7 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Hipotrocoide.h"
-
+#include "Coche.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -27,7 +27,11 @@ GLdouble upX=0, upY=1, upZ=0;
 // Scene variables
 GLfloat angX, angY, angZ; 
 
+//OBJETOS
 Hipotrocoide* h = new Hipotrocoide(6, 100, 7, 4, 2);
+Coche* c = new Coche(0.5);
+
+
 
 void buildSceneObjects() {	 
     angX=0.0f;
@@ -71,43 +75,6 @@ void initGL() {
 	// Viewport set up
     glViewport(0, 0, WIDTH, HEIGHT);  	
  }
-//====================================================== MIS FUNCIONES
-
-void dibujaHipotrocoide() {
-
-	h->dibuja();
-
-}
-
-
-void dibujaPerfil(GLdouble x, GLdouble y, GLdouble z){
-
-	glBegin(GL_LINES);
-
-	glColor3f(0.0, 0.0, 0.0);
-	glVertex3f(x, 0, z);
-	glVertex3f(0, y, 0);
-
-	glColor3f(0.0, 0.0, 0.0);
-	glVertex3f(x, 0, z);
-	glVertex3f(0, 0, 0);
-
-	glEnd();
-
-}
-
-void dibuja4Perfiles(GLdouble rad){
-	for (int i = 0; i < 4; i++)
-		dibujaPerfil(rad*cos(i*3.14 / 2), 10, rad*sin(i*3.14 / 2));
-	
-}
-
-void dibujaNPerfiles(GLdouble rad, int numLados){
-	for (int i = 0; i < numLados-3; i++)
-		dibujaPerfil(rad*cos(i*2*3.14 / numLados), 10, rad*sin(i*2*3.14 / numLados));
-
-}
-
 
 
 //======================================================================
@@ -142,10 +109,8 @@ void display(void) {
 		// Drawing the scene	 		 
 		//glColor3f(1.0, 1.0, 1.0);
 		//glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
-		//dibuja4Perfiles(5);
-		dibujaHipotrocoide();
-		//dibujaNPerfiles(5, 20);
-
+		h->dibuja();
+		c->dibuja(0.1);
 	glPopMatrix();
  
 	glFlush();

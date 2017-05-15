@@ -1,31 +1,8 @@
-﻿Compilación iniciada a las 12/05/2017 17:38:13.
+﻿Compilación iniciada a las 15/05/2017 19:52:45.
      1>Proyecto "D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\freeglut project 3D\freeglut project 3D.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Clases_Practica0\Cara.cpp ..\..\Clases_Practica0\FalsoTetraedro.cpp ..\..\Clases_Practica0\Malla.cpp ..\..\Clases_Practica0\PuntoVector3D.cpp ..\..\Clases_Practica0\VerticeNormal.cpp Coche.cpp Cono.cpp Hipotrocoide.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\freeglut\include\\" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\main.cpp(88): warning C4244: 'argumento' : conversión de 'GLdouble' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\main.cpp(89): warning C4244: 'argumento' : conversión de 'GLdouble' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\main.cpp(92): warning C4244: 'argumento' : conversión de 'GLdouble' a 'GLfloat'; posible pérdida de datos
-         Hipotrocoide.cpp
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(27): warning C4244: '=' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(131): warning C4244: 'inicializando' : conversión de 'double' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(184): warning C4244: '+=' : conversión de 'GLfloat' a 'int'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(186): warning C4244: '+=' : conversión de 'GLfloat' a 'int'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(188): warning C4244: '+=' : conversión de 'GLfloat' a 'int'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\hipotrocoide.cpp(191): warning C4244: 'argumento' : conversión de 'int' a 'GLfloat'; posible pérdida de datos
-         Cono.cpp
-         Coche.cpp
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\coche.cpp(17): warning C4244: 'inicializando' : conversión de 'GLfloat' a 'int'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\coche.cpp(28): warning C4244: 'argumento' : conversión de 'int' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\coche.cpp(29): warning C4244: 'argumento' : conversión de 'int' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\coche.cpp(30): warning C4244: 'argumento' : conversión de 'int' a 'GLfloat'; posible pérdida de datos
-     1>d:\informatica grafica\practica2 ig\ig2\freeglut project 3d (2012)\freeglut project 3d\coche.cpp(31): warning C4244: 'argumento' : conversión de 'int' a 'GLfloat'; posible pérdida de datos
-         VerticeNormal.cpp
-         PuntoVector3D.cpp
-         Malla.cpp
-         FalsoTetraedro.cpp
-         Cara.cpp
-         Generando código...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\Debug\freeglut project 3D.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\freeglut\lib\\" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\Debug\freeglut project 3D.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\INFORMATICA GRAFICA\Practica2 IG\IG2\freeglut project 3D (2012)\Debug\freeglut project 3D.lib" /MACHINE:X86 Debug\Cara.obj
          Debug\FalsoTetraedro.obj
@@ -41,4 +18,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:02.21
+Tiempo transcurrido 00:00:00.95
