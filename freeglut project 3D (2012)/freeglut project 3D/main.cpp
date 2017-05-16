@@ -15,7 +15,7 @@ using namespace std;
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
-
+bool transp = false;
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
 
@@ -159,6 +159,17 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;  
+		case VK_SPACE: 
+			if (!transp){
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+				transp = true;
+			}
+				
+			else {
+				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+				transp = false;
+			}
+			break;
 		default:
 			need_redisplay = false;
 			break;
