@@ -25,13 +25,16 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
+
+
 GLfloat grados = 0;
 
+GLdouble rotacionRuedas = 0;
 
 
 //OBJETOS
-Hipotrocoide* h = new Hipotrocoide(6, 100, 7, 4, 2);
-Coche* c = new Coche(0.5);
+Hipotrocoide* h = new Hipotrocoide(6, 200, 7, 4, 2);
+Coche* c = new Coche();
 
 bool transp = false;
 
@@ -116,22 +119,26 @@ void display(void) {
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+
 		//movemos el coche, hacer un metodo
 		glPushMatrix();
-		float alfa = atan(sqrt(h->C’(grados)->getX() * h->C’(grados)->getX() + h->C’(grados)->getY() * h->C’(grados)->getY() + h->C’(grados)->getZ() * h->C’(grados)->getZ()));
-		alfa = (alfa * 360) / (2 * 3.1415926);
+		//float alfa = atan(sqrt(h->C’(grados)->getX() * h->C’(grados)->getX() + h->C’(grados)->getY() * h->C’(grados)->getY() + h->C’(grados)->getZ() * h->C’(grados)->getZ()));
+		float alfa = atan2(h->C’(grados)->getX(), h->C’(grados)->getZ());
+
+		alfa = (alfa* 360) / (2 * 3.1415926);
 		glTranslated(h->C(grados)->getX(), h->C(grados)->getY(), h->C(grados)->getZ());
-	
+		glRotated(-90, 0, 1, 0);
 		glRotated(alfa, 0, 1, 0);
-		c->dibuja(0.1);
+		c->dibuja(1, rotacionRuedas);
 		glPopMatrix();
+
 
 		if (transp)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		else if (!transp)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		
-			h->dibuja();
+			//h->dibuja();
 
 
 	glPopMatrix();
@@ -192,9 +199,11 @@ void key(unsigned char key, int x, int y){
 
 		case 'w':
 			grados += 0.1;
+			rotacionRuedas -= 10;
 			break;
 		case 'q':
 			grados -= 0.1;
+			rotacionRuedas += 10;
 			break;
 
 		default:

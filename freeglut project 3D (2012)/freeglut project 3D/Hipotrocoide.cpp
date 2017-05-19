@@ -12,7 +12,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	b = bparam;
 	c = cparam;
 
-	r = 0.5;
+	r = 0.6;
 
 	numeroVertices = nP * nQ;
 	numeroNormales = numeroVertices;
@@ -70,7 +70,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 
 	
 	for (int c = 0; c < numeroCaras; c++) {
-		//normal[c] = normalNewell(cara[c]);
+		//normal[c] = norWell(cara[c]);
 		normal[c] = new PuntoVector3D(0, 0, 0, 0);
 	}
 
@@ -180,12 +180,9 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 	int p = (i + 1) % c->getNumeroVertices();
 	vertSiguiente = vertice[c->getIndiceVerticeK(p)];
 
-	n[0] += (vertActual->getY() - vertSiguiente->getY())*
-		(vertActual->getZ() + vertSiguiente->getZ());
-	n[1] += (vertActual->getZ() - vertSiguiente->getZ())*
-		(vertActual->getX() + vertSiguiente->getX());
-	n[2] += (vertActual->getX() - vertSiguiente->getX())*
-		(vertActual->getY() + vertSiguiente->getY());
+	n[0] += (vertActual->getY() - vertSiguiente->getY()) * (vertActual->getZ() + vertSiguiente->getZ());
+	n[1] += (vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX());
+	n[2] += (vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY());
 
 	}
 	PuntoVector3D* nNormal = new PuntoVector3D(n[0], n[1], n[2], 0);

@@ -71,6 +71,7 @@
     <ClCompile Include="..\..\Clases_Practica0\Malla.cpp" />
     <ClCompile Include="..\..\Clases_Practica0\PuntoVector3D.cpp" />
     <ClCompile Include="..\..\Clases_Practica0\VerticeNormal.cpp" />
+    <ClCompile Include="Camara.cpp" />
     <ClCompile Include="Coche.cpp" />
     <ClCompile Include="Cono.cpp" />
     <ClCompile Include="Hipotrocoide.cpp" />
@@ -82,6 +83,7 @@
     <ClInclude Include="..\..\Clases_Practica0\Malla.h" />
     <ClInclude Include="..\..\Clases_Practica0\PuntoVector3D.h" />
     <ClInclude Include="..\..\Clases_Practica0\VerticeNormal.h" />
+    <ClInclude Include="Camara.h" />
     <ClInclude Include="Coche.h" />
     <ClInclude Include="Cono.h" />
     <ClInclude Include="Hipotrocoide.h" />

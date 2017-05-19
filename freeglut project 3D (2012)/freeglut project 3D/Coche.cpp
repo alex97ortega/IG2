@@ -1,20 +1,21 @@
 #include "Coche.h"
 
 
-Coche::Coche(GLdouble s)
+Coche::Coche()
 {
-	dibuja(s);
+	o = gluNewQuadric();
 }
 
 
 Coche::~Coche()
 {
+	gluDeleteQuadric(o);
 }
 
 
-void Coche::dibuja(GLdouble s){
-	GLUquadric* o;
-	o = gluNewQuadric();
+void Coche::dibuja(GLdouble s, GLdouble rot){
+	
+
 
 
 	glPushMatrix();
@@ -25,34 +26,38 @@ void Coche::dibuja(GLdouble s){
 
 //ruedas
 	glPushMatrix();
+	glRotated(rot, 0, 0, 1);
 	gluCylinder(o, 1, 1, 1, 20, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glTranslated(0, 0, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(6, 0, 1);
+	glRotated(rot, 0, 0, 1);
 	gluCylinder(o, 1, 1, 1, 20, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glTranslated(0, 0, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(0, 0, 5);
+	glRotated(rot, 0, 0, 1);
 	gluCylinder(o, 1, 1, 1, 20, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glTranslated(0, 0, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(6, 0, 4);
+	glRotated(rot, 0, 0, 1);
 	gluCylinder(o, 1, 1, 1, 20, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glTranslated(0, 0, 1);
-	gluDisk(o, 0, 1, 20, 1);
+	gluDisk(o, 0.5, 1, 4, 1);
 	glPopMatrix();
 
 	//chasis

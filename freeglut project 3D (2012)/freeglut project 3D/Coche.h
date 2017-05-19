@@ -3,9 +3,11 @@
 class Coche 
 {
 public:
-	Coche(GLdouble s);
+	Coche();
 	~Coche();
 
-	void dibuja(GLdouble s);
+	void dibuja(GLdouble s, GLdouble rot);
+
+	GLUquadric* o;
 };
 
