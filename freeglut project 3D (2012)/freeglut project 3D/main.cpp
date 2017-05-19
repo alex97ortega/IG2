@@ -15,7 +15,6 @@ using namespace std;
 
 // Viewport size
 int WIDTH= 500, HEIGHT= 500;
-bool transp = false;
 // Viewing frustum parameters
 GLdouble xRight=10, xLeft=-xRight, yTop=10, yBot=-yTop, N=1, F=1000;
 
@@ -26,10 +25,15 @@ GLdouble upX=0, upY=1, upZ=0;
 
 // Scene variables
 GLfloat angX, angY, angZ; 
+GLfloat grados = 0;
+
+
 
 //OBJETOS
 Hipotrocoide* h = new Hipotrocoide(6, 100, 7, 4, 2);
 Coche* c = new Coche(0.5);
+
+bool transp = false;
 
 
 
@@ -109,8 +113,27 @@ void display(void) {
 		// Drawing the scene	 		 
 		//glColor3f(1.0, 1.0, 1.0);
 		//glutSolidSphere(6, 50, 60); //Sphere: radius=6, meridians=50, parallels=60
-		h->dibuja();
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		//movemos el coche, hacer un metodo
+		glPushMatrix();
+		float alfa = atan(sqrt(h->C’(grados)->getX() * h->C’(grados)->getX() + h->C’(grados)->getY() * h->C’(grados)->getY() + h->C’(grados)->getZ() * h->C’(grados)->getZ()));
+		alfa = (alfa * 360) / (2 * 3.1415926);
+		glTranslated(h->C(grados)->getX(), h->C(grados)->getY(), h->C(grados)->getZ());
+	
+		glRotated(alfa, 0, 1, 0);
 		c->dibuja(0.1);
+		glPopMatrix();
+
+		if (transp)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		else if (!transp)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		
+			h->dibuja();
+
+
 	glPopMatrix();
  
 	glFlush();
@@ -159,17 +182,21 @@ void key(unsigned char key, int x, int y){
 		case 'x': angY=angY-5; break;
 		case 'd': angZ=angZ+5; break;
 		case 'c': angZ=angZ-5; break;  
-		case VK_SPACE: 
-			if (!transp){
-				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		case 'o': 
+			if (!transp)
 				transp = true;
-			}
-				
-			else {
-				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			else 
 				transp = false;
-			}
 			break;
+
+		case 'w':
+			grados += 0.1;
+			break;
+		case 'q':
+			grados -= 0.1;
+			break;
+
 		default:
 			need_redisplay = false;
 			break;

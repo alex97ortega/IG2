@@ -37,19 +37,19 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	}
 	
 
-	for (int i = nP; i < numeroVertices; i +=nP){//numero vertices de la cara
+	for (int i = nP; i < numeroVertices; i +=nP){//numero poligonos en la hipotrocoide
 		//sumamos el angulo y transformamos para dinujar en la curva
 		t += iGrados;
-		cMatriz(t);
 		//Calcular los nuevos vertices
-		for (int j = 0; j < nP; j++){
+		cMatriz(t);
+		for (int j = 0; j < nP; j++){//numero de caras de cada poligono
 			vertice[i + j] = transformar(perfil[j]);
 			
-			if (j + 1 == nP) {
+			if (j == nP - 1) {
 				VerticeNormal** verNor = new VerticeNormal*[4];
 				verNor[0] = new VerticeNormal(i + j, 0);
 				verNor[1] = new VerticeNormal((i + j) - nP, 0);
-				verNor[2] = new VerticeNormal((i + j + 1) - nP - nP, 0);
+				verNor[2] = new VerticeNormal((i + j + 1) - 2 * nP, 0);
 				verNor[3] = new VerticeNormal((i + j + 1) - nP, 0);
 				cara[i + j - nP] = new Cara(4, verNor);
 			}
