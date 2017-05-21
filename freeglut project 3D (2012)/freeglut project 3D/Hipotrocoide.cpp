@@ -37,12 +37,12 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	}
 	
 
-	for (int i = nP; i < numeroVertices; i +=nP){//numero poligonos en la hipotrocoide
+	for (int i = nP; i < numeroVertices; i +=nP){//numero poligonos en la hipotrocoide en vertices
 		//sumamos el angulo y transformamos para dinujar en la curva
 		t += iGrados;
 		//Calcular los nuevos vertices
 		cMatriz(t);
-		for (int j = 0; j < nP; j++){//numero de caras de cada poligono
+		for (int j = 0; j < nP; j++){//numero de caras cuadrangulares de cada poligono
 			vertice[i + j] = transformar(perfil[j]);
 			
 			if (j == nP - 1) {
@@ -70,8 +70,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 
 	
 	for (int c = 0; c < numeroCaras; c++) {
-		//normal[c] = norWell(cara[c]);
-		normal[c] = new PuntoVector3D(0, 0, 0, 0);
+		normal[c] = norWell(cara[c]);
 	}
 
 }
@@ -170,15 +169,14 @@ void Hipotrocoide::cMatriz(GLfloat t){
 
 PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 {
-
+	//{x,y,z}
 	int n[3] = { 0,0,0 };
 	PuntoVector3D* vertActual;
 	PuntoVector3D* vertSiguiente;
 	for(int i = 0; i < c->getNumeroVertices(); i++){
 
 	vertActual = vertice[c->getIndiceVerticeK(i)];
-	int p = (i + 1) % c->getNumeroVertices();
-	vertSiguiente = vertice[c->getIndiceVerticeK(p)];
+	vertSiguiente = vertice[c->getIndiceVerticeK((i + 1) % c->getNumeroVertices())];
 
 	n[0] += (vertActual->getY() - vertSiguiente->getY()) * (vertActual->getZ() + vertSiguiente->getZ());
 	n[1] += (vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX());
