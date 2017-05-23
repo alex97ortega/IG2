@@ -26,7 +26,7 @@ private:
 
 	GLfloat t;
 
-	GLfloat iGrados;
+	GLfloat tGrados;
 
 	int nP;//nº lados poligon
 	int nQ;//nº poligon

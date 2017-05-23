@@ -3,6 +3,7 @@
 #include <gl/GLU.h>
 #include "Hipotrocoide.h"
 #include "Coche.h"
+#include "Camara.h"
 #include <GL/freeglut.h>
 //#include <GL/glut.h>
 
@@ -27,16 +28,22 @@ GLdouble upX=0, upY=1, upZ=0;
 GLfloat angX, angY, angZ; 
 
 
-GLfloat grados = 0;
+GLfloat gradosC = 0;
+
+GLfloat gradosRoll = 0;
 
 GLdouble rotacionRuedas = 0;
 
+PuntoVector3D* eye = new PuntoVector3D(eyeX, eyeY, eyeZ, 1);
+PuntoVector3D* look = new PuntoVector3D(lookX, lookY, lookZ, 0);
+PuntoVector3D* up = new PuntoVector3D(upX, upY, upZ, 0);
+
+bool transp = false;
 
 //OBJETOS
 Hipotrocoide* h = new Hipotrocoide(6, 200, 7, 4, 2);
 Coche* c = new Coche();
-
-bool transp = false;
+Camara* camara = new Camara(eye, look, up);
 
 
 
@@ -89,7 +96,9 @@ void initGL() {
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 
-	glMatrixMode(GL_MODELVIEW);	 
+	glMatrixMode(GL_MODELVIEW);	
+	camara->movRoll(gradosRoll);/////////////////////
+
 	glPushMatrix();
 	
 		// Rotating the scene
@@ -122,14 +131,13 @@ void display(void) {
 
 		//movemos el coche, hacer un metodo
 		glPushMatrix();
-		//float alfa = atan(sqrt(h->C’(grados)->getX() * h->C’(grados)->getX() + h->C’(grados)->getY() * h->C’(grados)->getY() + h->C’(grados)->getZ() * h->C’(grados)->getZ()));
-		float alfa = atan2(h->C’(grados)->getX(), h->C’(grados)->getZ());
 
+		float alfa = atan2(h->C’(gradosC)->getX(), h->C’(gradosC)->getZ());
 		alfa = (alfa* 360) / (2 * 3.1415926);
-		glTranslated(h->C(grados)->getX(), h->C(grados)->getY(), h->C(grados)->getZ());
+		glTranslated(h->C(gradosC)->getX(), h->C(gradosC)->getY(), h->C(gradosC)->getZ());
 		glRotated(-90, 0, 1, 0);
 		glRotated(alfa, 0, 1, 0);
-		c->dibuja(1, rotacionRuedas);
+		c->dibuja(0.1, rotacionRuedas);
 		glPopMatrix();
 
 
@@ -138,7 +146,8 @@ void display(void) {
 		else if (!transp)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		
-			//h->dibuja();
+			h->dibuja();
+
 
 
 	glPopMatrix();
@@ -198,13 +207,20 @@ void key(unsigned char key, int x, int y){
 			break;
 
 		case 'w':
-			grados += 0.1;
+			gradosC += 0.1;
 			rotacionRuedas -= 10;
 			break;
 		case 'q':
-			grados -= 0.1;
+			gradosC -= 0.1;
 			rotacionRuedas += 10;
 			break;
+		case 'e':
+			gradosRoll += 0.01;
+			break;
+		case 'r':
+			gradosRoll -= 0.01;
+			break;
+
 
 		default:
 			need_redisplay = false;

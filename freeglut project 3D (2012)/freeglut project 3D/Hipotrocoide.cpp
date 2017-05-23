@@ -24,12 +24,12 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 
 	t = 0;
 
-	iGrados = (5 * (2 * 3.1415926 / nQ));
+	tGrados = (5 * (2 * 3.1415926 / nQ));
 
 
 	cPerfil();//creamos el perfil cuyo vertices dependen de nP
 	//y luego calculamos la matriz
-	cMatriz(0);// angulo creo
+	cMatriz(t);// angulo cero
 	
 	//aplicamos a los vertices del primer pefil la transfaormacion (mover los vertices a la curva)
 	for (int i = 0; i < nP; i++){
@@ -39,7 +39,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 
 	for (int i = nP; i < numeroVertices; i +=nP){//numero poligonos en la hipotrocoide en vertices
 		//sumamos el angulo y transformamos para dinujar en la curva
-		t += iGrados;
+		t += tGrados;
 		//Calcular los nuevos vertices
 		cMatriz(t);
 		for (int j = 0; j < nP; j++){//numero de caras cuadrangulares de cada poligono

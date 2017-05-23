@@ -7,6 +7,7 @@ class Camara
 public:
 	Camara(PuntoVector3D* eyep,	PuntoVector3D* lookp, PuntoVector3D* upp);
 	~Camara();
+	void movRoll(GLfloat roll);
 
 private:
 	PuntoVector3D* eye;
@@ -16,13 +17,22 @@ private:
 	PuntoVector3D* v;
 	PuntoVector3D* n;
 
-	GLdouble left;
-	GLdouble right;
-	GLdouble top;
-	GLdouble bottom;
-	GLdouble Near;
-	GLdouble Far;
-	GLdouble fovy;
-	GLdouble aspect;
+	GLfloat left;
+	GLfloat right;
+	GLfloat top;
+	GLfloat bottom;
+	GLfloat Near;
+	GLfloat Far;
+	GLfloat fovy;
+	GLfloat aspect;
+
+	GLfloat V[16];
+	GLfloat V´[16];
+	
+
+	void darValores();
+	void cMatriz();
+	void inversa();
+	
 };
 
