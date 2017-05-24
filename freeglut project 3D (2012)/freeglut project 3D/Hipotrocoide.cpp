@@ -36,33 +36,22 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 		vertice[i] = transformar(perfil[i]);
 	}
 	
-
-	for (int i = nP; i < numeroVertices; i +=nP){//numero poligonos en la hipotrocoide en vertices
-		//sumamos el angulo y transformamos para dinujar en la curva
+	
+	for (int i = 1; i < nQ; i++){//numero poligonos en la hipotrocoide 
+		//sumamos el angulo y transformamos para dibujar en la curva
 		t += tGrados;
 		//Calcular los nuevos vertices
 		cMatriz(t);
 		for (int j = 0; j < nP; j++){//numero de caras cuadrangulares de cada poligono
-			vertice[i + j] = transformar(perfil[j]);
-			
-			if (j == nP - 1) {
+			vertice[i * nP + j] = transformar(perfil[j]);
+
 				VerticeNormal** verNor = new VerticeNormal*[4];
-				verNor[0] = new VerticeNormal(i + j, 0);
-				verNor[1] = new VerticeNormal((i + j) - nP, 0);
-				verNor[2] = new VerticeNormal((i + j + 1) - 2 * nP, 0);
-				verNor[3] = new VerticeNormal((i + j + 1) - nP, 0);
-				cara[i + j - nP] = new Cara(4, verNor);
-			}
-			
-			else {
-				VerticeNormal** verNor = new VerticeNormal*[4];
-				verNor[0] = new VerticeNormal(i + j, 0);
-				verNor[1] = new VerticeNormal((i + j) - nP, 0);
-				verNor[2] = new VerticeNormal((i + j + 1) - nP, 0);
-				verNor[3] = new VerticeNormal((i + j + 1), 0);
-				cara[i + j - nP] = new Cara(4, verNor);
-			}
-			//delete verNor;
+				verNor[0] = new VerticeNormal(i * nP + j, 0);
+				verNor[1] = new VerticeNormal((i * nP + j - nP), 0);
+				verNor[2] = new VerticeNormal((i * nP + j - nP + 1) % nP + (nP * (i - 1)), 0);
+				verNor[3] = new VerticeNormal((i * nP + j + 1) % nP + (nP * i), 0);
+				cara[(i - 1) * nP + j] = new Cara(4, verNor);
+
 		}
 
 	}
@@ -72,7 +61,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	for (int c = 0; c < numeroCaras; c++) {
 		normal[c] = norWell(cara[c]);
 	}
-
+	
 }
 
 
@@ -170,7 +159,7 @@ void Hipotrocoide::cMatriz(GLfloat t){
 PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 {
 	//{x,y,z}
-	int n[3] = { 0,0,0 };
+	float n[3] = { 0, 0, 0 };
 	PuntoVector3D* vertActual;
 	PuntoVector3D* vertSiguiente;
 	for(int i = 0; i < c->getNumeroVertices(); i++){
@@ -183,7 +172,7 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 	n[2] += (vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY());
 
 	}
-	PuntoVector3D* nNormal = new PuntoVector3D(n[0], n[1], n[2], 0);
+	PuntoVector3D* nNormal = new PuntoVector3D(n[0], n[1], n[2], 1);
 	nNormal->normalizar();
 	return nNormal;
 }
