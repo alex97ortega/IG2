@@ -20,7 +20,6 @@ void Coche::dibuja(GLdouble s, GLdouble rot){
 
 	glPushMatrix();
 	glScaled(s, s, s);
-	glTranslated(-3, 0, -3);
 
 	glColor3d(0, 0.7, 0.3);
 
@@ -73,6 +72,13 @@ void Coche::dibuja(GLdouble s, GLdouble rot){
 	gluDisk(o, 0, 1.5, 4, 1);
 	glPopMatrix();
 
+	glEnable(GL_LIGHT1);
+	GLfloat p[] = { 0, 1, 1, 1 };
+	glLightfv(GL_LIGHT1, GL_POSITION, p);
+	glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 50);
+	glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 4);
+	GLfloat dir[] = { 1.0, 0.0, 0.0 };
+	glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, dir);
 
 	glPopMatrix();
 

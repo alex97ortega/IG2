@@ -46,10 +46,10 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 			vertice[i * nP + j] = transformar(perfil[j]);
 
 				VerticeNormal** verNor = new VerticeNormal*[4];
-				verNor[0] = new VerticeNormal(i * nP + j, 0);
-				verNor[1] = new VerticeNormal((i * nP + j - nP), 0);
-				verNor[2] = new VerticeNormal((i * nP + j - nP + 1) % nP + (nP * (i - 1)), 0);
-				verNor[3] = new VerticeNormal((i * nP + j + 1) % nP + (nP * i), 0);
+				verNor[0] = new VerticeNormal(i * nP + j, (i - 1) * nP + j);
+				verNor[1] = new VerticeNormal((i * nP + j - nP), (i - 1) * nP + j);
+				verNor[2] = new VerticeNormal((i * nP + j - nP + 1) % nP + (nP * (i - 1)), (i - 1) * nP + j);
+				verNor[3] = new VerticeNormal((i * nP + j + 1) % nP + (nP * i), (i - 1) * nP + j);
 				cara[(i - 1) * nP + j] = new Cara(4, verNor);
 
 		}
@@ -175,6 +175,7 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 
 	}
 	PuntoVector3D* nNormal = new PuntoVector3D(nx, ny, nz, 0);
+//	nNormal->escalar(-1);
 	nNormal->normalizar();
 	return nNormal;
 }

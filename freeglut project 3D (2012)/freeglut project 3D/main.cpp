@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "Hipotrocoide.h"
@@ -41,6 +41,8 @@ PuntoVector3D* up = new PuntoVector3D(upX, upY, upZ, 0);
 bool transp = false;
 
 //OBJETOS
+
+float alfa;
 Hipotrocoide* h;
 Coche* c;
 Camara* camara;
@@ -71,14 +73,31 @@ void initGL() {
 	// Light0
 	glEnable(GL_LIGHTING);  
     glEnable(GL_LIGHT0);
-    GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
+   /* GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
     glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
     GLfloat a[]={0.3f,0.3f,0.3f,1.0f};
     glLightfv(GL_LIGHT0, GL_AMBIENT, a);
 	GLfloat s[]={1.0f,1.0f,1.0f,1.0f};
     glLightfv(GL_LIGHT0, GL_SPECULAR, s);
 	GLfloat p[]={25.0f, 25.0f, 25.0f, 1.0f};	 
+	glLightfv(GL_LIGHT0, GL_POSITION, p);*/
+
+	////original ▲
+
+
+	GLfloat amb[] = {0,0,0,0, 1.0 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
+
+	GLfloat p[] = { 0, 1, 1, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
+	
+	GLfloat amb0[] = { 1, 1, 0, 1 };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, amb0);
+
+	
+
+	////falta la ambiente ▲
+
 
 	// Camera set up
 	glMatrixMode(GL_MODELVIEW);
@@ -135,12 +154,12 @@ void display(void) {
 		//movemos el coche, hacer un metodo
 		glPushMatrix();
 
-		float alfa = atan2(h->C�(gradosC)->getX(), h->C�(gradosC)->getZ());
+		alfa = atan2(h->C’(gradosC)->getX(), h->C’(gradosC)->getZ());
 		alfa = (alfa* 360) / (2 * 3.1415926);
 		glTranslated(h->C(gradosC)->getX(), h->C(gradosC)->getY(), h->C(gradosC)->getZ());
 		glRotated(-90, 0, 1, 0);
 		glRotated(alfa, 0, 1, 0);
-		c->dibuja(0.1, rotacionRuedas);
+		c->dibuja(1, rotacionRuedas);
 		glPopMatrix();
 
 
@@ -149,7 +168,7 @@ void display(void) {
 		else if (!transp)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		
-			h->dibuja();
+			//h->dibuja();
 
 
 

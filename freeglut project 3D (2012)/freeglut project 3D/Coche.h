@@ -9,5 +9,9 @@ public:
 	void dibuja(GLdouble s, GLdouble rot);
 
 	GLUquadric* o;
+
+	/*GLfloat getpos(){
+		return 
+	}*/
 };
 
