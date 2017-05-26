@@ -7,7 +7,8 @@ class Camara
 public:
 	Camara(PuntoVector3D* eyep,	PuntoVector3D* lookp, PuntoVector3D* upp);
 	~Camara();
-	void movRoll(GLfloat roll);
+	void movRoll();
+	void giraX();
 
 private:
 	PuntoVector3D* eye;
@@ -29,6 +30,12 @@ private:
 	GLfloat V[16];
 	GLfloat V´[16];
 	
+	PuntoVector3D* d;
+	GLfloat r;
+
+
+	GLfloat angRoll = 0.05;
+	GLfloat angX = 0;
 
 	void darValores();
 	void cMatriz();

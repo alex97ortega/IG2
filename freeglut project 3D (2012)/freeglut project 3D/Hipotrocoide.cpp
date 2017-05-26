@@ -159,7 +159,9 @@ void Hipotrocoide::cMatriz(GLfloat t){
 PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 {
 	//{x,y,z}
-	float n[3] = { 0, 0, 0 };
+	GLfloat nx = 0;
+	GLfloat ny = 0;
+	GLfloat nz = 0;
 	PuntoVector3D* vertActual;
 	PuntoVector3D* vertSiguiente;
 	for(int i = 0; i < c->getNumeroVertices(); i++){
@@ -167,12 +169,12 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 	vertActual = vertice[c->getIndiceVerticeK(i)];
 	vertSiguiente = vertice[c->getIndiceVerticeK((i + 1) % c->getNumeroVertices())];
 
-	n[0] += (vertActual->getY() - vertSiguiente->getY()) * (vertActual->getZ() + vertSiguiente->getZ());
-	n[1] += (vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX());
-	n[2] += (vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY());
+	nx += (vertActual->getY() - vertSiguiente->getY()) * (vertActual->getZ() + vertSiguiente->getZ());
+	ny += (vertActual->getZ() - vertSiguiente->getZ()) * (vertActual->getX() + vertSiguiente->getX());
+	nz += (vertActual->getX() - vertSiguiente->getX()) * (vertActual->getY() + vertSiguiente->getY());
 
 	}
-	PuntoVector3D* nNormal = new PuntoVector3D(n[0], n[1], n[2], 1);
+	PuntoVector3D* nNormal = new PuntoVector3D(nx, ny, nz, 0);
 	nNormal->normalizar();
 	return nNormal;
 }

@@ -41,9 +41,9 @@ PuntoVector3D* up = new PuntoVector3D(upX, upY, upZ, 0);
 bool transp = false;
 
 //OBJETOS
-Hipotrocoide* h = new Hipotrocoide(6, 200, 7, 4, 2);
-Coche* c = new Coche();
-Camara* camara = new Camara(eye, look, up);
+Hipotrocoide* h;
+Coche* c;
+Camara* camara;
 
 
 
@@ -51,6 +51,10 @@ void buildSceneObjects() {
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
+
+	h = new Hipotrocoide(6, 200, 7, 4, 2);
+	c = new Coche();
+	camara = new Camara(eye, look, up);
 }
 
 void initGL() {	 		 
@@ -97,8 +101,7 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 
 	glMatrixMode(GL_MODELVIEW);	
-	camara->movRoll(gradosRoll);/////////////////////
-
+	
 	glPushMatrix();
 	
 		// Rotating the scene
@@ -206,21 +209,21 @@ void key(unsigned char key, int x, int y){
 				transp = false;
 			break;
 
-		case 'w':
+		case 'f':
 			gradosC += 0.1;
 			rotacionRuedas -= 10;
 			break;
-		case 'q':
+		case 'v':
 			gradosC -= 0.1;
 			rotacionRuedas += 10;
 			break;
-		case 'e':
-			gradosRoll += 0.01;
+		case 'q':
+			camara->movRoll();
 			break;
-		case 'r':
-			gradosRoll -= 0.01;
+		case '1':
+			camara->giraX();
 			break;
-
+			
 
 		default:
 			need_redisplay = false;

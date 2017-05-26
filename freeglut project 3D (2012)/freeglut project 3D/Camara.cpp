@@ -30,6 +30,8 @@ Camara::Camara(PuntoVector3D* eyep, PuntoVector3D* lookp, PuntoVector3D* upp)
 
 	darValores();
 	cMatriz();
+
+	d = new PuntoVector3D(0, eye->getY() - look->getY(), eye->getZ() - look->getZ(), 0);
 }
 
 
@@ -43,6 +45,7 @@ void Camara::darValores(){
 	PuntoVector3D* i = new PuntoVector3D(eye->getX() - look->getX(),
 		eye->getY() - look->getY(), eye->getZ() - look->getZ(), 0);
 	i->normalizar();
+
 	n = i;
 
 	///////////////u
@@ -110,18 +113,20 @@ void Camara::inversa(){
 
 
 }
-void Camara::movRoll(GLfloat roll){
+
+
+void Camara::movRoll(){
 
 	glMatrixMode(GL_MODELVIEW); 
 	
 	///u global
-	PuntoVector3D* i = new PuntoVector3D(u->getX()* cos(roll) + v->getX() * sin(roll),
-		u->getY()* cos(roll) + v->getY() * sin(roll), u->getZ()* cos(roll) + v->getZ() * sin(roll), 0);
+	PuntoVector3D* i = new PuntoVector3D(u->getX()* cos(angRoll) + v->getX() * sin(angRoll),
+		u->getY()* cos(angRoll) + v->getY() * sin(angRoll), u->getZ()* cos(angRoll) + v->getZ() * sin(angRoll), 0);
 	
 
 	///v global preguntar?¿
-	PuntoVector3D* j = new PuntoVector3D(-u->getX()* sin(roll) + v->getX() * cos(roll),
-		-u->getY()* sin(roll) + v->getY() * cos(roll), -u->getZ()* sin(roll) + v->getZ() * cos(roll), 0);
+	PuntoVector3D* j = new PuntoVector3D(-u->getX()* sin(angRoll) + v->getX() * cos(angRoll),
+		-u->getY()* sin(angRoll) + v->getY() * cos(angRoll), -u->getZ()* sin(angRoll) + v->getZ() * cos(angRoll), 0);
 
 
 	u = i;
@@ -132,7 +137,20 @@ void Camara::movRoll(GLfloat roll){
 	inversa();
 	glLoadMatrixf(V´);
 
+}
+
+void Camara::giraX(){
+
+	glMatrixMode(GL_MODELVIEW);
+
+	angX += 0.05;
+
+	r = sqrt(d->getY() * d->getY() + d->getZ() * d->getZ());
+	eye = new PuntoVector3D(eye->getX(), r * sin(angX), r * cos(angX), 1);
 	
+	darValores();
 
-
+	cMatriz();
+	glLoadIdentity();
+	gluLookAt(eye->getX(), eye->getY(), eye->getZ(), look->getX(), look->getY(), look->getZ(), up->getX(), up->getY(), up->getZ());
 }
