@@ -48,13 +48,12 @@ Coche* c;
 Camara* camara;
 
 
-
 void buildSceneObjects() {	 
     angX=0.0f;
     angY=0.0f;
     angZ=0.0f;	
 
-	h = new Hipotrocoide(6, 200, 7, 4, 2);
+	h = new Hipotrocoide(10, 200, 14, 8, 4);
 	c = new Coche();
 	camara = new Camara(eye, look, up);
 }
@@ -71,9 +70,10 @@ void initGL() {
 	buildSceneObjects();
 
 	// Light0
-	glEnable(GL_LIGHTING);  
+	glEnable(GL_LIGHTING); 
     glEnable(GL_LIGHT0);
-   /* GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
+
+    /*GLfloat d[]={0.7f,0.5f,0.5f,1.0f};
     glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
     GLfloat a[]={0.3f,0.3f,0.3f,1.0f};
     glLightfv(GL_LIGHT0, GL_AMBIENT, a);
@@ -84,19 +84,18 @@ void initGL() {
 
 	////original ▲
 
-
-	GLfloat amb[] = {0,0,0,0, 1.0 };
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, amb);
-
-	GLfloat p[] = { 0, 1, 1, 0 };
+	GLfloat d[] = { 1, 1, 1, 1.0f };
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
+	GLfloat a[] = { 0, 1, 0, 1.0f };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, a);
+	GLfloat s[]={1.0f,1.0f,1.0f,1.0f};
+	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
+	GLfloat p[] = { 0, 10, 10, 0 };
 	glLightfv(GL_LIGHT0, GL_POSITION, p);
+	GLfloat lmb[] = { 0, 0, 0, 1 };
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lmb);
 	
-	GLfloat amb0[] = { 1, 1, 0, 1 };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, amb0);
-
-	
-
-	////falta la ambiente ▲
+	////nueva ▲
 
 
 	// Camera set up
@@ -119,7 +118,9 @@ void initGL() {
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 
-	glMatrixMode(GL_MODELVIEW);	
+	glMatrixMode(GL_MODELVIEW);
+	GLfloat p[] = { 0, 10, 10, 0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, p);
 	
 	glPushMatrix();
 	
@@ -159,7 +160,7 @@ void display(void) {
 		glTranslated(h->C(gradosC)->getX(), h->C(gradosC)->getY(), h->C(gradosC)->getZ());
 		glRotated(-90, 0, 1, 0);
 		glRotated(alfa, 0, 1, 0);
-		c->dibuja(1, rotacionRuedas);
+		c->dibuja(0.5, rotacionRuedas);
 		glPopMatrix();
 
 
@@ -168,7 +169,7 @@ void display(void) {
 		else if (!transp)
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		
-			//h->dibuja();
+			h->dibuja();
 
 
 
@@ -241,6 +242,21 @@ void key(unsigned char key, int x, int y){
 			break;
 		case '1':
 			camara->giraX();
+			break;
+		case 'h':
+			glEnable(GL_LIGHT0);
+			break;
+		case 'n':
+			glDisable(GL_LIGHT0);
+			break;
+		case 'g':
+			glEnable(GL_LIGHT1);
+			glEnable(GL_LIGHT2);
+			break;
+
+		case 'b':
+			glDisable(GL_LIGHT1);
+			glDisable(GL_LIGHT2);
 			break;
 			
 

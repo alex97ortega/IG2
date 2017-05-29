@@ -10,8 +10,5 @@ public:
 
 	GLUquadric* o;
 
-	/*GLfloat getpos(){
-		return 
-	}*/
 };
 

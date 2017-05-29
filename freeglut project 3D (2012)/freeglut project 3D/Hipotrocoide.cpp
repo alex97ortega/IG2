@@ -12,11 +12,11 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 	b = bparam;
 	c = cparam;
 
-	r = 0.6;
+	r = 1;
 
 	numeroVertices = nP * nQ;
 	numeroNormales = numeroVertices;
-	numeroCaras = numeroVertices - nP; // quitar el "- nP" si se va a unir las caras del final con las del principio.
+	numeroCaras = numeroVertices - nP; 
 	vertice = new PuntoVector3D*[numeroVertices];
 	normal = new PuntoVector3D*[numeroNormales];
 	cara = new Cara*[numeroCaras];
@@ -55,9 +55,7 @@ Hipotrocoide::Hipotrocoide(int nump, int numq, GLfloat aparam, GLfloat bparam, G
 		}
 
 	}
-	
-
-	
+		
 	for (int c = 0; c < numeroCaras; c++) {
 		normal[c] = norWell(cara[c]);
 	}
@@ -162,6 +160,7 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 	GLfloat nx = 0;
 	GLfloat ny = 0;
 	GLfloat nz = 0;
+
 	PuntoVector3D* vertActual;
 	PuntoVector3D* vertSiguiente;
 	for(int i = 0; i < c->getNumeroVertices(); i++){
@@ -175,7 +174,6 @@ PuntoVector3D * Hipotrocoide::norWell(Cara * c)
 
 	}
 	PuntoVector3D* nNormal = new PuntoVector3D(nx, ny, nz, 0);
-//	nNormal->escalar(-1);
 	nNormal->normalizar();
 	return nNormal;
 }
