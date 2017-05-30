@@ -126,6 +126,6 @@ void Coche::dibuja(GLdouble s, GLdouble rot){
 	glPopMatrix();
 
 
-	glColor3d(0, 0, 1);
+	glColor3d(1, 1, 1);
 
 }

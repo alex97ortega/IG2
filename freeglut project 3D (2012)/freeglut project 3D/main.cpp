@@ -84,9 +84,9 @@ void initGL() {
 
 	////original ▲
 
-	GLfloat d[] = { 1, 1, 1, 1.0f };
+	GLfloat d[] = { 0, 1, 0, 1.0f };
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, d);
-	GLfloat a[] = { 0, 1, 0, 1.0f };
+	GLfloat a[] = { 0, 0, 0, 1.0f };
 	glLightfv(GL_LIGHT0, GL_AMBIENT, a);
 	GLfloat s[]={1.0f,1.0f,1.0f,1.0f};
 	glLightfv(GL_LIGHT0, GL_SPECULAR, s);
@@ -160,7 +160,7 @@ void display(void) {
 		glTranslated(h->C(gradosC)->getX(), h->C(gradosC)->getY(), h->C(gradosC)->getZ());
 		glRotated(-90, 0, 1, 0);
 		glRotated(alfa, 0, 1, 0);
-		c->dibuja(0.5, rotacionRuedas);
+		c->dibuja(0.1, rotacionRuedas);
 		glPopMatrix();
 
 
